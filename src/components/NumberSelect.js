@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 60,
+    minWidth: 92,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NumberSelect(props) {
   const classes = useStyles();
-  const [numberOfGames, setNumberOfGames] = useState(0);
+  const [numberOfGames, setNumberOfGames] = useState("");
 
   const handleChange = (event, value) => {
     // console.log(value.props.value);
