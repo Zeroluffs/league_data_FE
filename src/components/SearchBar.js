@@ -7,6 +7,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import RegionSelect from "./RegionSelect";
 import NumberSelect from "./NumberSelect";
+import RoleSelect from "./RoleSelect";
 import Divider from "@material-ui/core/Divider";
 import { useHistory } from "react-router-dom";
 
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     margin: "auto",
-    width: 450,
+    width: 600,
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -39,6 +40,7 @@ export default function SearchBar(props) {
   const classes = useStyles();
   const [region, setRegion] = useState("");
   const [nGames, setNgames] = useState(0);
+  const [role, setRole] = useState("");
   const [summonerName, setSummonerName] = useState("");
   const handleSubmit = (e) => {
     let ign = summonerName.split(" ").join("").toLowerCase();
@@ -53,6 +55,7 @@ export default function SearchBar(props) {
         summoner_name: summoner_name,
         nGames: nGames,
         region: region,
+        role: role,
       };
       const response = await api.post("summoner-data/", body);
       history.push({
@@ -71,6 +74,7 @@ export default function SearchBar(props) {
         <RegionSelect
           selectRegion={(region) => setRegion(region)}
         ></RegionSelect>
+        <RoleSelect selectRole={(role) => setRole(role)}></RoleSelect>
         <NumberSelect
           selectNgames={(ngames) => setNgames(ngames)}
         ></NumberSelect>
