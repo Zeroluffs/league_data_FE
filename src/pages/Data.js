@@ -72,13 +72,13 @@ function Data(props) {
   let base64ImageString = Buffer.from(image, "binary").toString("base64");
   // console.log(base64ImageString);
   // console.log(typeof image);
-  let damageGraph = "data:image/svg+xml;base64," + image[0][0];
-  let goldGraph = "data:image/svg+xml;base64," + image[1][0];
-  let bigDamage = "data:image/svg+xml;base64," + image[0][1];
-  let bigGold = "data:image/svg+xml;base64," + image[1][1];
-
-
-
+  // // let damageGraph = "data:image/svg+xml;base64," + image[0][0];
+  // // let goldGraph = "data:image/svg+xml;base64," + image[1][0];
+  // // let bigDamage = "data:image/svg+xml;base64," + image[0][1];
+  // // let bigGold = "data:image/svg+xml;base64," + image[1][1];
+  let labels = props.location.dataProps.labels;
+  console.log(props.location.dataProps.labels);
+  let i = -1;
   // return <img alt="" src={srcValue} />;
   return (
     <Fragment>
@@ -90,7 +90,40 @@ function Data(props) {
         justify="center"
         style={{ minHeight: "100vh" }}
       >
-        <Grid item xs={12}>
+        {image.map((row) => {
+          let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
+          let bigGraph = "data:image/svg+xml;base64," + row[1];
+          i++;
+          return (
+            <Grid key={row} item xs={12}>
+              <Card className={classes.root}>
+                <CardMedia
+                  className={classes.media}
+                  image={normalSizedgraph}
+                  title="Paella dish"
+                />
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                  >
+                    {labels[i]}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton
+                    onClick={() => handleOpen(bigGraph)}
+                    size="medium"
+                  >
+                    <ZoomInIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          );
+        })}
+        {/* <Grid item xs={12}>
           <Card className={classes.root}>
             <CardMedia
               className={classes.media}
@@ -135,7 +168,7 @@ function Data(props) {
               </IconButton>
             </CardActions>
           </Card>
-        </Grid>
+        </Grid> */}
       </Grid>
       {/* <div>
         <img alt="" className="imgTest" src={bigDamage}></img>
