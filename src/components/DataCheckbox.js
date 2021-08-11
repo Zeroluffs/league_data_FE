@@ -13,6 +13,7 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    justifyContent: "space-around",
   },
   formControl: {
     margin: theme.spacing(3),

@@ -11,6 +11,7 @@ import RoleSelect from "./RoleSelect";
 import Divider from "@material-ui/core/Divider";
 import { useHistory } from "react-router-dom";
 import DataCheckbox from "./DataCheckbox";
+import "../styles/DataSearch.css";
 const api = axios.create({
   baseURL: `http://127.0.0.1:8000/`,
 });
@@ -77,33 +78,35 @@ export default function SearchBar(props) {
   }
   return (
     <Fragment>
-      <Paper component="form" className={classes.root}>
-        <div className="selectorDiv">
-          <RegionSelect
-            selectRegion={(region) => setRegion(region)}
-          ></RegionSelect>
-          <RoleSelect selectRole={(role) => setRole(role)}></RoleSelect>
-          <NumberSelect
-            selectNgames={(ngames) => setNgames(ngames)}
-          ></NumberSelect>
-        </div>
-        <Divider className={classes.divider} orientation="vertical" />
-        <InputBase
-          className={classes.input}
-          placeholder="Search Summoner Name"
-          value={summonerName}
-          onChange={(event) => setSummonerName(event.target.value)}
-        />
-        <IconButton
-          type="submit"
-          onClick={handleSubmit}
-          className={classes.iconButton}
-          aria-label="search"
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
-      <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
+      <div className="searchDataContainer">
+        <Paper component="form" className={classes.root}>
+          <div className="selectorDiv">
+            <RegionSelect
+              selectRegion={(region) => setRegion(region)}
+            ></RegionSelect>
+            <RoleSelect selectRole={(role) => setRole(role)}></RoleSelect>
+            <NumberSelect
+              selectNgames={(ngames) => setNgames(ngames)}
+            ></NumberSelect>
+          </div>
+          <Divider className={classes.divider} orientation="vertical" />
+          <InputBase
+            className={classes.input}
+            placeholder="Search Summoner Name"
+            value={summonerName}
+            onChange={(event) => setSummonerName(event.target.value)}
+          />
+          <IconButton
+            type="submit"
+            onClick={handleSubmit}
+            className={classes.iconButton}
+            aria-label="search"
+          >
+            <SearchIcon />
+          </IconButton>
+        </Paper>
+        <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
+      </div>
     </Fragment>
   );
 }

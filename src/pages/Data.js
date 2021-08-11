@@ -68,14 +68,7 @@ function Data(props) {
 
   const bull = <span className={classes.bullet}>•</span>;
   let image = props.location.dataProps.data;
-  console.log(image);
-  let base64ImageString = Buffer.from(image, "binary").toString("base64");
-  // console.log(base64ImageString);
-  // console.log(typeof image);
-  // // let damageGraph = "data:image/svg+xml;base64," + image[0][0];
-  // // let goldGraph = "data:image/svg+xml;base64," + image[1][0];
-  // // let bigDamage = "data:image/svg+xml;base64," + image[0][1];
-  // // let bigGold = "data:image/svg+xml;base64," + image[1][1];
+  console.log(image); 
   let labels = props.location.dataProps.labels;
   console.log(props.location.dataProps.labels);
   let i = -1;
@@ -123,52 +116,6 @@ function Data(props) {
             </Grid>
           );
         })}
-        {/* <Grid item xs={12}>
-          <Card className={classes.root}>
-            <CardMedia
-              className={classes.media}
-              image={damageGraph}
-              title="Paella dish"
-            />
-            <CardContent>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                Damage Graph
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <IconButton onClick={() => handleOpen(bigDamage)} size="large">
-                <ZoomInIcon />
-              </IconButton>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Card className={classes.root}>
-            <CardMedia
-              className={classes.media}
-              image={goldGraph}
-              title="Paella dish"
-            />
-            <CardContent>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                Gold graph
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <IconButton onClick={() => handleOpen(bigGold)} size="small">
-                <ZoomInIcon />
-              </IconButton>
-            </CardActions>
-          </Card>
-        </Grid> */}
       </Grid>
       {/* <div>
         <img alt="" className="imgTest" src={bigDamage}></img>
@@ -182,12 +129,6 @@ function Data(props) {
           onClose={handleClose}
         >
           <DialogContent>
-            {/* <Card className={classes.rootD}>
-              <CardMedia
-                className={classes.mediaD}
-                image={goldGraph}
-              ></CardMedia>
-            </Card> */}
             <img
               alt=""
               style={{ width: 2600, overflow: "auto" }}

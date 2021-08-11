@@ -1,0 +1,10 @@
+.searchDataContainer {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.dataLabelsContainer {
+  justify-content: space-between;
+}
