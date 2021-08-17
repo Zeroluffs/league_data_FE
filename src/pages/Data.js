@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -63,6 +63,8 @@ function Data(props) {
     open: false,
     currentImg: "",
   });
+  const [images, setImages] = useState([]);
+  const [labels, setLabels] = useState([]);
   const classes = useStyles();
   const theme = useTheme();
 
@@ -75,12 +77,22 @@ function Data(props) {
   };
 
   const bull = <span className={classes.bullet}>•</span>;
-  let image = props.location.dataProps.data;
-  console.log(image);
-  let labels = props.location.dataProps.labels;
-  console.log(props.location.dataProps.labels);
+  // let image = props.location.dataProps.data;
+  // console.log(image);
+  // let labels = props.location.dataProps.labels;
+  // console.log(props.location.dataProps.labels);
   let i = -1;
   // return <img alt="" src={srcValue} />;
+
+  useEffect(() => {
+    if (props.location.dataProps === undefined) {
+      props.history.push("/");
+    } else {
+      setImages(props.location.dataProps.data);
+      setLabels(props.location.dataProps.labels);
+    }
+  }, [props]);
+
   return (
     <Fragment>
       <Fab
@@ -101,7 +113,7 @@ function Data(props) {
         justify="center"
         style={{ minHeight: "100vh" }}
       >
-        {image.map((row) => {
+        {images?.map((row) => {
           let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
           let bigGraph = "data:image/svg+xml;base64," + row[1];
           i++;
