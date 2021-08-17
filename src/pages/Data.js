@@ -14,14 +14,22 @@ import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
-
+import SearchBar from "../components/SearchBar";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 import "../App.css";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 600,
     [theme.breakpoints.down("md")]: {
       maxWidth: 470,
     },
+  },
+  fab: {
+    position: "fixed",
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
   },
   rootD: {
     width: 1000,
@@ -68,13 +76,23 @@ function Data(props) {
 
   const bull = <span className={classes.bullet}>•</span>;
   let image = props.location.dataProps.data;
-  console.log(image); 
+  console.log(image);
   let labels = props.location.dataProps.labels;
   console.log(props.location.dataProps.labels);
   let i = -1;
   // return <img alt="" src={srcValue} />;
   return (
     <Fragment>
+      <Fab
+        onClick={() => {
+          props.history.push("/");
+        }}
+        color="primary"
+        aria-label="add"
+        className={classes.fab}
+      >
+        <ArrowBackIcon />
+      </Fab>
       <Grid
         container
         spacing={0}
@@ -93,7 +111,7 @@ function Data(props) {
                 <CardMedia
                   className={classes.media}
                   image={normalSizedgraph}
-                  title="Paella dish"
+                  title="graph"
                 />
                 <CardContent>
                   <Typography

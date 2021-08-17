@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RegionSelect(props) {
   const classes = useStyles();
-  const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("na1");
 
   const handleChange = (event, value) => {
     // console.log(value.props.value);
@@ -42,13 +42,14 @@ export default function RegionSelect(props) {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
+          defaultValue={region}
           value={region}
           onChange={handleChange}
           label="region"
         >
-          <MenuItem value="na1">North America</MenuItem>
-          <MenuItem value="euw1">Europe West</MenuItem>
-          <MenuItem value="kr">Korea</MenuItem>
+          <MenuItem value="na1">NA</MenuItem>
+          <MenuItem value="euw1">EUW</MenuItem>
+          <MenuItem value="kr">KR</MenuItem>
         </Select>
       </FormControl>
     </div>

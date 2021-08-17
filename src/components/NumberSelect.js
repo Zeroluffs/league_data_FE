@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NumberSelect(props) {
   const classes = useStyles();
-  const [numberOfGames, setNumberOfGames] = useState("");
+  const [numberOfGames, setNumberOfGames] = useState(10);
 
   const handleChange = (event, value) => {
     // console.log(value.props.value);
@@ -31,20 +31,19 @@ export default function NumberSelect(props) {
 
   useEffect(() => {
     console.log("number of games", numberOfGames);
-     props.selectNgames(numberOfGames);
+    props.selectNgames(numberOfGames);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numberOfGames]);
 
   return (
     <div>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">
-         Games
-        </InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Games</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={numberOfGames}
+          defaultValue={10}
+          // value={numberOfGames}
           onChange={handleChange}
           label="games"
         >
