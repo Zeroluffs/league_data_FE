@@ -12,6 +12,8 @@ import Divider from "@material-ui/core/Divider";
 import { useHistory } from "react-router-dom";
 import DataCheckbox from "./DataCheckbox";
 import "../styles/DataSearch.css";
+import { useDispatch } from "react-redux";
+import { fetchGraphs } from "../features/graphs/graphsSlice";
 const api = axios.create({
   baseURL: `http://127.0.0.1:8000/`,
 });
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchBar(props) {
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [region, setRegion] = useState("");
   const [nGames, setNgames] = useState(0);
@@ -64,16 +66,19 @@ export default function SearchBar(props) {
       // newArray = data.filter((item) => {
       //   return item.status === true;
       // });
-      const response = await api.post("summoner-data/", body);
+      // const response = await api.post("summoner-data/", body);
+      console.log(body);
+      const response = await dispatch(fetchGraphs(body)).unwrap();
+      console.log(response);
       history.push({
         pathname: `/data`,
         dataProps: {
-          data: response.data,
+          data: response,
           labels: data,
         },
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   return (

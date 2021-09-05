@@ -19,6 +19,10 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import "../App.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+
+import { selectAllGraphs } from "../features/graphs/graphsSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 600,
@@ -59,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Data(props) {
+  const posts = useSelector(selectAllGraphs);
+  console.log(typeof posts);
   const [imgState, setImgState] = useState({
     open: false,
     currentImg: "",
@@ -88,7 +94,9 @@ function Data(props) {
     if (props.location.dataProps === undefined) {
       props.history.push("/");
     } else {
-      setImages(props.location.dataProps.data);
+      // // setImages(props.location.dataProps.data);
+      setImages(posts);
+      console.log(posts)
       setLabels(props.location.dataProps.labels);
     }
   }, [props]);
@@ -114,11 +122,14 @@ function Data(props) {
         style={{ minHeight: "100vh" }}
       >
         {images?.map((row) => {
-          let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
-          let bigGraph = "data:image/svg+xml;base64," + row[1];
+          // let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
+          // let bigGraph = "data:image/svg+xml;base64," + row[1];
+          let normalSizedgraph =
+            "data:image/svg+xml;base64," + row.normalGraph;
+          let bigGraph = "data:image/svg+xml;base64," + row.bigGraph;
           i++;
           return (
-            <Grid key={row} item xs={12}>
+            <Grid key={i} item xs={12}>
               <Card className={classes.root}>
                 <CardMedia
                   className={classes.media}
