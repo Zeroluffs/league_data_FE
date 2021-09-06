@@ -117,8 +117,8 @@ function Data(props) {
       </Fab>
       <Grid
         container
-        spacing={0}
-        direction="column"
+        spacing={2}
+        direction="row"
         alignItems="center"
         justify="center"
         style={{ minHeight: "100vh" }}
@@ -130,7 +130,7 @@ function Data(props) {
           let bigGraph = "data:image/svg+xml;base64," + row.bigGraph;
           i++;
           return (
-            <Grid key={i} item xs={12}>
+            <Grid key={i} item xs={6}>
               <Card className={classes.root}>
                 <CardMedia
                   className={classes.media}
