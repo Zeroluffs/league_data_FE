@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     margin: "auto",
-    width: 600,
+    width: "60",
+    borderRadius:"15px"
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -97,7 +98,7 @@ export default function SearchBar(props) {
           <Divider className={classes.divider} orientation="vertical" />
           <InputBase
             className={classes.input}
-            placeholder="Search Summoner Name"
+            placeholder="Search Summoner"
             value={summonerName}
             onChange={(event) => setSummonerName(event.target.value)}
           />
