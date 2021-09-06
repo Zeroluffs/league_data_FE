@@ -20,7 +20,11 @@ export const fetchGraphs = createAsyncThunk(
 const graphsSlice = createSlice({
   name: "graphs",
   initialState,
-  reducers: {},
+  reducers: {
+    reset(state) {
+      Object.assign(state, initialState);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchGraphs.pending, (state, action) => {
@@ -38,5 +42,5 @@ const graphsSlice = createSlice({
 });
 
 export default graphsSlice.reducer;
-
+export const { reset } = graphsSlice.actions;
 export const selectAllGraphs = (state) => state.graphs.graphs;

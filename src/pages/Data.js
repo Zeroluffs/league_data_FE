@@ -22,7 +22,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import { selectAllGraphs } from "../features/graphs/graphsSlice";
 import { useSelector, useDispatch } from "react-redux";
-
+import { reset } from "../features/graphs/graphsSlice";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 600,
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Data(props) {
+  const dispatch = useDispatch();
   const posts = useSelector(selectAllGraphs);
   console.log(typeof posts);
   const [imgState, setImgState] = useState({
@@ -96,7 +97,7 @@ function Data(props) {
     } else {
       // // setImages(props.location.dataProps.data);
       setImages(posts);
-      console.log(posts)
+      console.log(posts);
       setLabels(props.location.dataProps.labels);
     }
   }, [props]);
@@ -106,6 +107,7 @@ function Data(props) {
       <Fab
         onClick={() => {
           props.history.push("/");
+          dispatch(reset());
         }}
         color="primary"
         aria-label="add"
@@ -124,8 +126,7 @@ function Data(props) {
         {images?.map((row) => {
           // let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
           // let bigGraph = "data:image/svg+xml;base64," + row[1];
-          let normalSizedgraph =
-            "data:image/svg+xml;base64," + row.normalGraph;
+          let normalSizedgraph = "data:image/svg+xml;base64," + row.normalGraph;
           let bigGraph = "data:image/svg+xml;base64," + row.bigGraph;
           i++;
           return (
