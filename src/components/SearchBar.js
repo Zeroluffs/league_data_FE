@@ -14,6 +14,7 @@ import DataCheckbox from "./DataCheckbox";
 import "../styles/DataSearch.css";
 import { useDispatch } from "react-redux";
 import { fetchGraphs } from "../features/graphs/graphsSlice";
+import CircularLoading from "./CircularLoading"
 const api = axios.create({
   baseURL: `http://127.0.0.1:8000/`,
 });
