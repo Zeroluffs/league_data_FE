@@ -3,6 +3,10 @@
   /* justify-content: center; */
   /* align-items: center; */
   flex-direction: column;
+  padding-top: 5%;
+}
+.dataCheckBox {
+  padding: 3%;
 }
 
 .dataLabelsContainer {

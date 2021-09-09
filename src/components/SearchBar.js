@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     margin: "auto",
     width: "60",
-    borderRadius:"15px"
+    borderRadius: "15px",
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -111,7 +111,9 @@ export default function SearchBar(props) {
             <SearchIcon />
           </IconButton>
         </Paper>
-        <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
+        <div className="dataCheckBox">
+          <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
+        </div>
       </div>
     </Fragment>
   );
