@@ -12,9 +12,9 @@ import Divider from "@material-ui/core/Divider";
 import { useHistory } from "react-router-dom";
 import DataCheckbox from "./DataCheckbox";
 import "../styles/DataSearch.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchGraphs } from "../features/graphs/graphsSlice";
-import CircularLoading from "./CircularLoading"
+import CircularLoading from "./CircularLoading";
 const api = axios.create({
   baseURL: `http://127.0.0.1:8000/`,
 });
@@ -48,6 +48,7 @@ export default function SearchBar(props) {
   const [role, setRole] = useState("");
   const [data, setData] = useState([]);
   const [summonerName, setSummonerName] = useState("");
+  const apiStatus = useSelector((state) => state.graphs.status);
   const handleSubmit = (e) => {
     let ign = summonerName.split(" ").join("").toLowerCase();
     console.log("Summoner:", ign, "from", region);
@@ -83,6 +84,17 @@ export default function SearchBar(props) {
       console.error(error);
     }
   }
+  let content;
+  if (apiStatus === "loading") {
+    content = <CircularLoading />;
+  } else if (apiStatus === "idle") {
+    content = (
+      <div className="dataCheckBox">
+        <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
+      </div>
+    );
+  }
+
   return (
     <Fragment>
       <div className="searchDataContainer">
@@ -112,9 +124,10 @@ export default function SearchBar(props) {
             <SearchIcon />
           </IconButton>
         </Paper>
-        <div className="dataCheckBox">
+        {/* <div className="dataCheckBox">
           <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
-        </div>
+        </div> */}
+        {content}
       </div>
     </Fragment>
   );
