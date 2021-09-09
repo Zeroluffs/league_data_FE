@@ -12,3 +12,9 @@
 .dataLabelsContainer {
   justify-content: space-between;
 }
+
+.spinningCircle {
+  display: flex;
+  margin: auto;
+  align-items: center;
+}

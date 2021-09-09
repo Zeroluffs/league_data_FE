@@ -48,6 +48,7 @@ export default function SearchBar(props) {
   const [role, setRole] = useState("");
   const [data, setData] = useState([]);
   const [summonerName, setSummonerName] = useState("");
+  const [addRequestStatus, setAddRequestStatus] = useState("idle");
   const apiStatus = useSelector((state) => state.graphs.status);
   const handleSubmit = (e) => {
     let ign = summonerName.split(" ").join("").toLowerCase();
@@ -56,38 +57,51 @@ export default function SearchBar(props) {
     e.preventDefault();
   };
 
+  const canSearch = addRequestStatus === "idle";
+
   async function apiCall(summoner_name, nGames) {
-    try {
-      let body = {
-        summoner_name: summoner_name,
-        nGames: nGames,
-        region: region,
-        role: role,
-        data: data,
-      };
-      // let newArray = [];
-      // newArray = data.filter((item) => {
-      //   return item.status === true;
-      // });
-      // const response = await api.post("summoner-data/", body);
-      console.log(body);
-      const response = await dispatch(fetchGraphs(body)).unwrap();
-      console.log(response);
-      history.push({
-        pathname: `/data`,
-        dataProps: {
-          data: response,
-          labels: data,
-        },
-      });
-    } catch (error) {
-      console.error(error);
+    if (canSearch) {
+      try {
+        setAddRequestStatus("pending");
+
+        let body = {
+          summoner_name: summoner_name,
+          nGames: nGames,
+          region: region,
+          role: role,
+          data: data,
+        };
+        // let newArray = [];
+        // newArray = data.filter((item) => {
+        //   return item.status === true;
+        // });
+        // const response = await api.post("summoner-data/", body);
+        console.log(body);
+        const response = await dispatch(fetchGraphs(body)).unwrap();
+        console.log(response);
+        history.push({
+          pathname: `/data`,
+          dataProps: {
+            data: response,
+            labels: data,
+          },
+        });
+      } catch (error) {
+        setAddRequestStatus("error");
+        console.error(error);
+      } finally {
+        setAddRequestStatus("idle");
+      }
     }
   }
   let content;
   if (apiStatus === "loading") {
-    content = <CircularLoading />;
-  } else if (apiStatus === "idle") {
+    content = (
+      <div className="spinningCircle">
+        <CircularLoading />
+      </div>
+    );
+  } else if (apiStatus === "idle" || apiStatus === "error") {
     content = (
       <div className="dataCheckBox">
         <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
@@ -120,6 +134,7 @@ export default function SearchBar(props) {
             onClick={handleSubmit}
             className={classes.iconButton}
             aria-label="search"
+            disabled={!canSearch}
           >
             <SearchIcon />
           </IconButton>
