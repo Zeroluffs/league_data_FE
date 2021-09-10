@@ -157,7 +157,7 @@ function Data(props) {
                       color="textSecondary"
                       gutterBottom
                     >
-                      {labels[i]}
+                      {row.label}
                     </Typography>
                   </CardContent>
                   <CardActions>
