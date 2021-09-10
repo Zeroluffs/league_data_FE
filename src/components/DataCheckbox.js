@@ -140,19 +140,6 @@ export default function DataCheckbox(props) {
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
-    // console.log(state);
-    // console.log(event.target.value);
-    // console.log(event.target.name);
-    // setName([...name, event.target.value]);
-    // setData({ ...data, [event.target.value]: event.target.checked });
-
-    // //run this code so you dont add duplicates to the names of the data fields you wanna look for
-    // if (name.length > 1) {
-    //   var unique = name.filter(function (elem, index, self) {
-    //     return index === self.indexOf(elem);
-    //   });
-    //   setName(unique);
-    // }
     let updatedList = test.map((item) => {
       if (item.name === event.target.value) {
         return { ...item, status: event.target.checked };
@@ -161,12 +148,9 @@ export default function DataCheckbox(props) {
     });
 
     setTest(updatedList);
-    // console.log(data.damageDone);
-    // console.log(name);
   };
 
   useEffect(() => {
-    console.log("data is", test);
     let newArray = [];
     newArray = test.filter((item) => {
       return item.status === true;
@@ -176,8 +160,6 @@ export default function DataCheckbox(props) {
       return item.name;
     });
 
-    console.log("these are the names");
-    console.log(arr);
     props.checkData(arr);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -319,7 +301,7 @@ export default function DataCheckbox(props) {
         />
       </FormGroup>
 
-      <FormGroup >
+      <FormGroup>
         <FormControlLabel
           control={
             <Checkbox
