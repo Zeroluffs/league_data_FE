@@ -13,9 +13,13 @@
   justify-content: space-between;
 }
 
+.wordsPosition{
+  padding-top: 3%;
+}
 .spinningCircle {
   display: flex;
   margin: auto;
   align-items: center;
   padding-top: 3%;
+  flex-direction: column;
 }

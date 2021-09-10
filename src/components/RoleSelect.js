@@ -55,39 +55,39 @@ export default function RoleSelect(props) {
         >
           <MenuItem value="top">
             <div style={{ display: "flex", alignItems: "center" }}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img alt="" width="32px" height="32px" border="0" src={top} />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText>Top</ListItemText>
             </div>
           </MenuItem>
           <MenuItem value="jg">
             <div style={{ display: "flex", alignItems: "center" }}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img alt="" width="32px" height="32px" border="0" src={jg} />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText>Jungle</ListItemText>
             </div>
           </MenuItem>
           <MenuItem value="mid">
             <div style={{ display: "flex", alignItems: "center" }}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img alt="" width="32px" height="32px" border="0" src={mid} />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText>Mid</ListItemText>
             </div>
           </MenuItem>
           <MenuItem value="adc">
             <div style={{ display: "flex", alignItems: "center" }}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img alt="" width="32px" height="32px" border="0" src={bot} />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText>Bot</ListItemText>
             </div>
           </MenuItem>
           <MenuItem value="supp">
             <div style={{ display: "flex", alignItems: "center" }}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img
                   alt=""
                   width="32px"
@@ -95,7 +95,7 @@ export default function RoleSelect(props) {
                   border="0"
                   src={support}
                 />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText>Support</ListItemText>
             </div>
           </MenuItem>

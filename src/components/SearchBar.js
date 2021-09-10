@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGraphs } from "../features/graphs/graphsSlice";
 import CircularLoading from "./CircularLoading";
 import { reset } from "../features/graphs/graphsSlice";
+import { Typography } from "@material-ui/core";
 const api = axios.create({
   baseURL: `http://127.0.0.1:8000/`,
 });
@@ -95,6 +96,11 @@ export default function SearchBar(props) {
     content = (
       <div className="spinningCircle">
         <CircularLoading />
+        <div className="wordsPosition">
+          <Typography variant="h6">
+            Please stand by. Your data is being processed
+          </Typography>
+        </div>
       </div>
     );
   } else if (apiStatus === "idle" || apiStatus === "failed") {
