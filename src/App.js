@@ -5,7 +5,7 @@ import cEve from "./images/coven.jpg";
 import Data from "./pages/Data";
 import store from "./app/store";
 import { Provider } from "react-redux";
-
+import TestGrid from "./components/TestGrid";
 function App() {
   return (
     <Provider store={store}>

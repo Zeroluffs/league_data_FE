@@ -24,13 +24,14 @@ import { selectAllGraphs } from "../features/graphs/graphsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { reset } from "../features/graphs/graphsSlice";
 import { useHistory } from "react-router-dom";
+import "../styles/Datapage.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 600,
-    [theme.breakpoints.down("md")]: {
-      maxWidth: 470,
-    },
+    flexGrow: 1,
+  },
+  grid: {
+    direction: "column",
   },
   fab: {
     position: "fixed",
@@ -127,50 +128,53 @@ function Data(props) {
       >
         <ArrowBackIcon />
       </Fab>
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: "100vh" }}
-      >
-        {images?.map((row) => {
-          // let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
-          // let bigGraph = "data:image/svg+xml;base64," + row[1];
-          let normalSizedgraph = "data:image/svg+xml;base64," + row.normalGraph;
-          let bigGraph = "data:image/svg+xml;base64," + row.bigGraph;
-          i++;
-          return (
-            <Grid key={i} item xs={6}>
-              <Card className={classes.root}>
-                <CardMedia
-                  className={classes.media}
-                  image={normalSizedgraph}
-                  title="graph"
-                />
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    {labels[i]}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <IconButton
-                    onClick={() => handleOpen(bigGraph)}
-                    size="medium"
-                  >
-                    <ZoomInIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Grid>
-          );
-        })}
-      </Grid>
+      <div className="graphGrid">
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+          spacing={1}
+        >
+          {images?.map((row) => {
+            // let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
+            // let bigGraph = "data:image/svg+xml;base64," + row[1];
+            let normalSizedgraph =
+              "data:image/svg+xml;base64," + row.normalGraph;
+            let bigGraph = "data:image/svg+xml;base64," + row.bigGraph;
+            i++;
+            return (
+              <Grid item xs={12} sm={12} md={6} key={i}>
+                <Card>
+                  <CardMedia
+                    className={classes.media}
+                    image={normalSizedgraph}
+                    title="graph"
+                  />
+                  <CardContent>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {labels[i]}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton
+                      onClick={() => handleOpen(bigGraph)}
+                      size="medium"
+                    >
+                      <ZoomInIcon />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </div>
+
       {/* <div>
         <img alt="" className="imgTest" src={bigDamage}></img>
       </div> */}
