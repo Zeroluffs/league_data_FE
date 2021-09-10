@@ -54,7 +54,6 @@ export default function SearchBar(props) {
   const apiStatus = useSelector((state) => state.graphs.status);
   const handleSubmit = (e) => {
     let ign = summonerName.split(" ").join("").toLowerCase();
-    console.log("Summoner:", ign, "from", region);
     apiCall(summonerName, nGames);
     e.preventDefault();
   };
@@ -74,9 +73,7 @@ export default function SearchBar(props) {
           role: role,
           data: data,
         };
-        console.log(body);
         const response = await dispatch(fetchGraphs(body)).unwrap();
-        console.log(response);
         setAddRequestStatus("idle");
         history.push({
           pathname: `/data`,
@@ -87,7 +84,6 @@ export default function SearchBar(props) {
         });
       } catch (error) {
         setAddRequestStatus("failed");
-        console.error(error);
       }
     }
   }

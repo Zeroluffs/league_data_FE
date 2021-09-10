@@ -20,17 +20,11 @@ export default function RegionSelect(props) {
   const [region, setRegion] = useState("na1");
 
   const handleChange = (event, value) => {
-    // console.log(value.props.value);
-    // setRegion(value.props.value);
-    // console.log(region);
-    // props.selectRegion(region);
-    // console.log("region added", region)
     const region1 = event.target.value;
     setRegion(region1);
   };
 
   useEffect(() => {
-    console.log("region is", region);
     props.selectRegion(region);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region]);

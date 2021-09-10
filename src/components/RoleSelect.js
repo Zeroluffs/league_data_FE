@@ -26,17 +26,11 @@ export default function RoleSelect(props) {
   const [role, setRole] = useState("top");
 
   const handleChange = (event, value) => {
-    // console.log(value.props.value);
-    // setRegion(value.props.value);
-    // console.log(region);
-    // props.selectRegion(region);
-    // console.log("region added", region)
     const role1 = event.target.value;
     setRole(role1);
   };
 
   useEffect(() => {
-    console.log("role is", role);
     props.selectRole(role);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role]);

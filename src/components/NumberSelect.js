@@ -20,17 +20,11 @@ export default function NumberSelect(props) {
   const [numberOfGames, setNumberOfGames] = useState(10);
 
   const handleChange = (event, value) => {
-    // console.log(value.props.value);
-    // setRegion(value.props.value);
-    // console.log(region);
-    // props.selectRegion(region);
-    // console.log("region added", region)
     const number_games = event.target.value;
     setNumberOfGames(number_games);
   };
 
   useEffect(() => {
-    console.log("number of games", numberOfGames);
     props.selectNgames(numberOfGames);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numberOfGames]);
