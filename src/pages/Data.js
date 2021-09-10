@@ -23,6 +23,8 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { selectAllGraphs } from "../features/graphs/graphsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { reset } from "../features/graphs/graphsSlice";
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 600,
@@ -63,6 +65,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Data(props) {
+  const history = useHistory();
+  const [locationKeys, setLocationKeys] = useState([]);
   const dispatch = useDispatch();
   const posts = useSelector(selectAllGraphs);
   console.log(typeof posts);
@@ -101,6 +105,14 @@ function Data(props) {
       setLabels(props.location.dataProps.labels);
     }
   }, [props]);
+  useEffect(() => {
+    return () => {
+      if (history.action === "POP") {
+        // Code here will run when back button fires. Note that it's after the `return` for useEffect's callback; code before the return will fire after the page mounts, code after when it is about to unmount.
+        dispatch(reset());
+      }
+    };
+  }, []);
 
   return (
     <Fragment>
