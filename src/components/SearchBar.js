@@ -57,7 +57,8 @@ export default function SearchBar(props) {
     e.preventDefault();
   };
 
-  const canSearch = addRequestStatus === "idle";
+  const canSearch =
+    addRequestStatus === "idle" || addRequestStatus === "failed";
 
   async function apiCall(summoner_name, nGames) {
     if (canSearch) {
@@ -87,7 +88,7 @@ export default function SearchBar(props) {
           },
         });
       } catch (error) {
-        setAddRequestStatus("error");
+        setAddRequestStatus("failed");
         console.error(error);
       } finally {
         setAddRequestStatus("idle");
@@ -101,7 +102,7 @@ export default function SearchBar(props) {
         <CircularLoading />
       </div>
     );
-  } else if (apiStatus === "idle" || apiStatus === "error") {
+  } else if (apiStatus === "idle" || apiStatus === "failed") {
     content = (
       <div className="dataCheckBox">
         <DataCheckbox checkData={(data) => setData(data)}></DataCheckbox>
