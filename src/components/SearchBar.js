@@ -15,6 +15,7 @@ import "../styles/DataSearch.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGraphs } from "../features/graphs/graphsSlice";
 import CircularLoading from "./CircularLoading";
+import { reset } from "../features/graphs/graphsSlice";
 const api = axios.create({
   baseURL: `http://127.0.0.1:8000/`,
 });
@@ -72,14 +73,10 @@ export default function SearchBar(props) {
           role: role,
           data: data,
         };
-        // let newArray = [];
-        // newArray = data.filter((item) => {
-        //   return item.status === true;
-        // });
-        // const response = await api.post("summoner-data/", body);
         console.log(body);
         const response = await dispatch(fetchGraphs(body)).unwrap();
         console.log(response);
+        setAddRequestStatus("idle");
         history.push({
           pathname: `/data`,
           dataProps: {
@@ -90,8 +87,6 @@ export default function SearchBar(props) {
       } catch (error) {
         setAddRequestStatus("failed");
         console.error(error);
-      } finally {
-        setAddRequestStatus("idle");
       }
     }
   }
@@ -109,6 +104,9 @@ export default function SearchBar(props) {
       </div>
     );
   }
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
 
   return (
     <Fragment>

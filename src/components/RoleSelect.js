@@ -88,7 +88,13 @@ export default function RoleSelect(props) {
           <MenuItem value="supp">
             <div style={{ display: "flex", alignItems: "center" }}>
               <ListItemIcon>
-                <img alt="" width="32px" height="32px" border="0" src={support} />
+                <img
+                  alt=""
+                  width="32px"
+                  height="32px"
+                  border="0"
+                  src={support}
+                />
               </ListItemIcon>
               <ListItemText>Support</ListItemText>
             </div>

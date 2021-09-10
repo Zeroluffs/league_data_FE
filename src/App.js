@@ -6,15 +6,21 @@ import Data from "./pages/Data";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import TestGrid from "./components/TestGrid";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+let persistor = persistStore(store);
+
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <Router>
-          <Route exact path="/" component={SearchBar} />
-          <Route exact path="/data" component={Data} />
-        </Router>
-      </div>
+      <PersistGate loading={null} persistor={persistor}>
+        <div>
+          <Router>
+            <Route exact path="/" component={SearchBar} />
+            <Route exact path="/data" component={Data} />
+          </Router>
+        </div>
+      </PersistGate>
     </Provider>
   );
 }

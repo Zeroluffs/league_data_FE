@@ -69,8 +69,7 @@ function Data(props) {
   const history = useHistory();
   const [locationKeys, setLocationKeys] = useState([]);
   const dispatch = useDispatch();
-  const posts = useSelector(selectAllGraphs);
-  console.log(typeof posts);
+  const graphs = useSelector(selectAllGraphs);
   const [imgState, setImgState] = useState({
     open: false,
     currentImg: "",
@@ -96,16 +95,16 @@ function Data(props) {
   let i = -1;
   // return <img alt="" src={srcValue} />;
 
-  useEffect(() => {
-    if (props.location.dataProps === undefined) {
-      props.history.push("/");
-    } else {
-      // // setImages(props.location.dataProps.data);
-      setImages(posts);
-      console.log(posts);
-      setLabels(props.location.dataProps.labels);
-    }
-  }, [props]);
+  // useEffect(() => {
+  //   if (props.location.dataProps === undefined) {
+  //     props.history.push("/");
+  //   } else {
+  //     // // setImages(props.location.dataProps.data);
+  //     setImages(posts);
+  //     console.log(posts);
+  //     setLabels(props.location.dataProps.labels);
+  //   }
+  // }, [props]);
   useEffect(() => {
     return () => {
       if (history.action === "POP") {
@@ -136,7 +135,7 @@ function Data(props) {
           alignItems="flex-start"
           spacing={1}
         >
-          {images?.map((row) => {
+          {graphs?.map((row) => {
             // let normalSizedgraph = "data:image/svg+xml;base64," + row[0];
             // let bigGraph = "data:image/svg+xml;base64," + row[1];
             let normalSizedgraph =
